@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= movie.Title %> - Trailer</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <% if (error) { %>
+            <h2>Error: <%= error %></h2>
+            <a href="/">Go back</a>
+        <% } else { %>
+            <h1><%= movie.Title %> Trailer</h1>
+            <p><%= movie.Plot %></p>
+            <h2>More Information</h2>
+            <ul>
+                <li>Released: <%= movie.Released %></li>
+                <li>Genre: <%= movie.Genre %></li>
+                <li>Director: <%= movie.Director %></li>
+                <li>Actors: <%= movie.Actors %></li>
+            </ul>
+            <a href="/">Search another trailer</a>
+        <% } %>
+    </div>
+</body>
+</html>
