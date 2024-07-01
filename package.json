@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  },
+  "name": "movietrailers",
+  "version": "1.0.0",
+  "description": "Proyecto de Trailers de Peliculas para la asignatura de Administracion de la Configuracion.",
+  "main": "functions.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grupo-A1/MovieTrailers.git"
+  },
+  "keywords": [
+    "movies",
+    "actors",
+    "trailers"
+  ],
+  "author": "Grupo-A1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Grupo-A1/MovieTrailers/issues"
+  },
+  "homepage": "https://github.com/Grupo-A1/MovieTrailers#readme"
+}
