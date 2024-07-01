@@ -31,6 +31,11 @@ describe('GET /trailer', () => {
     const res = await request(app).get('/trailer');
     expect(res.statusCode).toEqual(302);
   });
-
+  it('should return 200 OK and render the trailer page with movie data', async () => {
+    const res = await request(app).get('/trailer').query({ title: 'Inception' });
+    expect(res.statusCode).toEqual(200);
+    expect(res.text).toContain('Inception');
+    });
 });
+
 
