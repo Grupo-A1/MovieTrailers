@@ -6,9 +6,30 @@
     <title>Movie Trailers</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .navbar-dark {
+            background-color: #333;
+        }
+        body {
+            background-color: #1c1c1c;
+            color: white;
+        }
+        .carousel-item img {
+            max-height: 600px;
+            object-fit: contain;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .carousel-caption-custom {
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="/">MovieTrailers</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,7 +58,7 @@
                 <% movies.forEach((movie, index) => { %>
                     <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
                         <img class="d-block w-100" src="<%= movie.Poster %>" alt="<%= movie.Title %>">
-                        <div class="carousel-caption d-none d-md-block">
+                        <div class="carousel-caption-custom">
                             <h5><%= movie.Title %></h5>
                             <p><%= movie.Plot %></p>
                         </div>
