@@ -3,19 +3,19 @@ const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const omdbApiKey = 'd42b3922'; // Replace with your OMDb API key
-const posterApiKey = 'd42b3922'; // Replace with your Poster API key
+const omdbApiKey = 'd42b3922'; // Reemplaza con tu clave API de OMDb
+const posterApiKey = 'd42b3922'; // Reemplaza con tu clave API de Poster
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 async function fetchMovies() {
     const movies = [
-        { title: 'Godzilla', id: 'tt0111161' },
-        { title: 'Venom: The Last Dance', id: 'tt0068646' },
-        { title: 'Batman: Caped Crusader', id: 'tt0071562' },
-        { title: 'Nosferatu', id: 'tt0468569' },
-        { title: 'Moana 2', id: 'tt0050083' }
+        { title: 'Movie 1', id: 'tt0111161' },
+        { title: 'Movie 2', id: 'tt0068646' },
+        { title: 'Movie 3', id: 'tt0071562' },
+        { title: 'Movie 4', id: 'tt0468569' },
+        { title: 'Movie 5', id: 'tt0050083' }
     ];
 
     const movieDetails = await Promise.all(movies.map(async movie => {
@@ -48,7 +48,7 @@ app.get('/movies', async (req, res) => {
 });
 
 app.get('/series', async (req, res) => {
-    // Add series fetching logic if needed
+    // Agregar lógica para obtener series si es necesario
     res.render('series', { series: [] });
 });
 
@@ -76,6 +76,10 @@ app.get('/trailer', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
