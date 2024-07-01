@@ -16,10 +16,40 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '18'
+        node-version: '14'
 
     - name: Install dependencies
       run: npm install
 
     - name: Run tests
       run: npm test
+
+    - name: Notify on failure
+      if: failure()
+      uses: actions/github-script@v4
+      with:
+        script: |
+          const issue_number = context.issue.number;
+          const repo_owner = context.repo.owner;
+          const repo_name = context.repo.repo;
+          github.issues.createComment({
+            issue_number: issue_number,
+            owner: repo_owner,
+            repo: repo_name,
+            body: 'The tests have failed. Please check the logs and fix the issues.'
+          });
+
+    - name: Prevent merge on failure
+      if: failure()
+      uses: actions/github-script@v4
+      with:
+        script: |
+          github.repos.createCommitStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: context.sha,
+            state: 'failure',
+            target_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            description: 'Tests failed',
+            context: 'CI/CD'
+          });
