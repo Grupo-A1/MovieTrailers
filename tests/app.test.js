@@ -12,7 +12,7 @@ describe('GET /', () => {
 
 describe('GET /movies', () => {
   it('should return 200 OK and render the movies page', async () => {
-    const res = await request(app).get('/movie');
+    const res = await request(app).get('/movies');
     expect(res.statusCode).toEqual(200);
     expect(res.text).toContain('Trending Movies');
   });
