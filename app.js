@@ -13,7 +13,7 @@ app.use(express.static('public'));
 
 async function fetchMovies() {
     const movies = [
-        { title: 'Movie 1', id: 'tt0111161' },
+        { title: 'Movie 1', id: 'tt0111162' },
         { title: 'Movie 2', id: 'tt0068646' },
         { title: 'Movie 3', id: 'tt0071562' },
         { title: 'Movie 4', id: 'tt0468569' },
