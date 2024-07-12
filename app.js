@@ -1,10 +1,10 @@
 const express = require('express');
-const axios = require('axios');
+const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const omdbApiKey = 'd42b3922'; // Reemplaza con tu clave API de OMDb
-const posterApiKey = 'd42b3922'; // Reemplaza con tu clave API de Poster
+const omdbApiKey = 'd42b3922';
+const posterApiKey = 'd42b3922';
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -20,8 +20,9 @@ async function fetchMovies() {
 
     const movieDetails = await Promise.all(movies.map(async movie => {
         const url = `http://www.omdbapi.com/?i=${movie.id}&apikey=${omdbApiKey}`;
-        const response = await axios.get(url);
-        return response.data;
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
     }));
 
     return movieDetails;
@@ -30,10 +31,11 @@ async function fetchMovies() {
 app.get('/', async (req, res) => {
     try {
         const movies = await fetchMovies();
-        res.render('index', { movies });
+        const welcomeMessage = "¡Bienvenido a la aplicación de películas!";
+        res.render('index', { movies, welcomeMessage });
     } catch (error) {
         console.error(error);
-        res.render('index', { movies: [] });
+        res.render('index', { movies: [], welcomeMessage: "¡Bienvenido a la aplicación de películas!" });
     }
 });
 
@@ -48,7 +50,6 @@ app.get('/movies', async (req, res) => {
 });
 
 app.get('/series', async (req, res) => {
-    // Agregar lógica para obtener series si es necesario
     res.render('series', { series: [] });
 });
 
@@ -62,8 +63,8 @@ app.get('/trailer', async (req, res) => {
     const url = `http://www.omdbapi.com/?t=${movieTitle}&apikey=${omdbApiKey}`;
 
     try {
-        const response = await axios.get(url);
-        const movie = response.data;
+        const response = await fetch(url);
+        const movie = await response.json();
 
         if (movie.Response === 'False') {
             return res.render('trailer', { error: movie.Error });
