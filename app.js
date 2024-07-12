@@ -1,10 +1,12 @@
+/* eslint-env node */
 const express = require('express');
 const axios = require('axios');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const omdbApiKey = 'd42b3922'; // Reemplaza con tu clave API de OMDb
-const posterApiKey = 'd42b3922'; // Reemplaza con tu clave API de Poster
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -18,7 +20,7 @@ async function fetchMovies() {
         { title: 'Movie 5', id: 'tt0050083' }
     ];
 
-    const movieDetails = await Promise.all(movies.map(async movie => {
+    const movieDetails = await Promise.all(movies.map(async (movie) => {
         const url = `http://www.omdbapi.com/?i=${movie.id}&apikey=${omdbApiKey}`;
         const response = await axios.get(url);
         return response.data;
