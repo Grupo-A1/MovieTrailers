@@ -19,7 +19,7 @@ describe('GET /movies', () => {
 });
 
 describe('GET /series', () => {
-  it('should return 200 OK and render the series page', async () => {
+  it('should return 200 OK and render the series pages', async () => {
     const res = await request(app).get('/series');
     expect(res.statusCode).toEqual(200);
     expect(res.text).toContain('Trending Series');
