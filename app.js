@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 // Introducir un error de linting: declarar una variable y no usarla
-const unusedVariable = 432;
+const unusedVariable = 42;
 
 async function fetchMovies() {
     const movies = [
