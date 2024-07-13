@@ -1,13 +1,19 @@
+// app.js
+
 const express = require('express');
 const axios = require('axios');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const omdbApiKey = 'd42b3922'; // Reemplaza con tu clave API de OMDb
-const posterApiKey = 'd42b3922'; // Reemplaza con tu clave API de Poster
+// const posterApiKey = 'd42b3922'; // Reemplaza con tu clave API de Poster
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+// Introducir un error de linting: declarar una variable y no usarla
+const unusedVariable = 42;
 
 async function fetchMovies() {
     const movies = [
@@ -18,7 +24,7 @@ async function fetchMovies() {
         { title: 'Movie 5', id: 'tt0050083' }
     ];
 
-    const movieDetails = await Promise.all(movies.map(async movie => {
+    const movieDetails = await Promise.all(movies.map(async (movie) => {
         const url = `http://www.omdbapi.com/?i=${movie.id}&apikey=${omdbApiKey}`;
         const response = await axios.get(url);
         return response.data;
@@ -72,7 +78,7 @@ app.get('/trailer', async (req, res) => {
         res.render('trailer', { movie });
     } catch (error) {
         console.error(error);
-        res.render('trailer', { error: 'An error occurred while fetching movie data.' });
+        res.render('trailer', { error: 'Error occurred while fetching movie data.' });
     }
 });
 
