@@ -50,8 +50,8 @@ Para ejecutar las pruebas localmente, sigue estos pasos:
 
 ## Integrantes
 
-- Eliardo Benoit
-- Janna Beras
-- Maria Garcia
-- Axell Baez
-- Gonzalo Pina
+- Eliardo Benoit - 1086299
+- Janna Beras - 1100583 
+- Maria Garcia -1104478
+- Axell Baez - 1100321
+- Gonzalo Pina - 1089505
